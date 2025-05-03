@@ -191,4 +191,4 @@ hugo.linux
 
 # Barrel Build files
 
-build_cache
+build_cache/
