@@ -7,10 +7,15 @@ set -e
 COLOR_RED="\e[31m"
 COLOR_GREEN="\e[32m"
 COLOR_BLUE="\e[34m"
+COLOR_YELLOW="\e[33m"
 COLOR_NONE="\e[0m"
 
 # Hugo version to use
 HUGO_VER="0.147.1"
+
+# Build settings
+BUILD_CACHE="build_cache"
+HUGO_COMMAND="hugo"
 
 # Function to display colored messages
 print_message() {
@@ -29,62 +34,52 @@ success() {
     print_message "${COLOR_GREEN}SUCCESS${COLOR_NONE} " "$1"
 }
 
+# Function to display warning messages
+warning() {
+    print_message "${COLOR_YELLOW}WARNING${COLOR_NONE} " "$1"
+}
+
 # Function to display error messages and exit
 error() {
     print_message "${COLOR_RED}ERROR${COLOR_NONE} " "$1"
     exit 1
 }
 
-# Display banner
-cat << "EOF"
-[31m ███████████                                         ████ 
-░░███░░░░░███                                       ░░███ 
- ░███    ░███  ██████   ████████  ████████   ██████  ░███ 
- ░██████████  ░░░░░███ ░░███░░███░░███░░███ ███░░███ ░███ 
- ░███░░░░░███  ███████  ░███ ░░░  ░███ ░░░ ░███████  ░███ 
- ░███    ░███ ███░░███  ░███      ░███     ░███░░░   ░███ 
- ███████████ ░░████████ █████     █████    ░░██████  █████
-░░░░░░░░░░░   ░░░░░░░░ ░░░░░     ░░░░░      ░░░░░░  ░░░░░ [0m
-                                                          
-[32m ███████████              ███  ████      █████            
-░░███░░░░░███            ░░░  ░░███     ░░███             
- ░███    ░███ █████ ████ ████  ░███   ███████             
- ░██████████ ░░███ ░███ ░░███  ░███  ███░░███             
- ░███░░░░░███ ░███ ░███  ░███  ░███ ░███ ░███             
- ░███    ░███ ░███ ░███  ░███  ░███ ░███ ░███             
- ███████████  ░░████████ █████ █████░░████████            
-░░░░░░░░░░░    ░░░░░░░░ ░░░░░ ░░░░░  ░░░░░░░░             [0m
+# Function to show help message
+show_help() {
+    cat << EOF
+Usage: $0 [options]
+
+Options:
+  -p, --preview    Preview the site using 'hugo serve'
+  -h, --help       Show this help message
+  
+Without options, the script will build the site to the 'public' directory.
 EOF
-echo
+    exit 0
+}
 
-# 1. Set up environment
-info "(1) Set up environment"
+# Parse command line arguments
+PREVIEW_MODE=false
 
-# 1.1 Python setup
-info "(1.1) Python"
-# TODO: Expand this when Python part finishes
-if true; then
-    success "Successfully set up Python environment"
-else
-    error "Failed to set up Python environment"
-fi
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        -p|--preview)
+            PREVIEW_MODE=true
+            shift
+            ;;
+        -h|--help)
+            show_help
+            ;;
+        *)
+            warning "Unknown option: $1"
+            show_help
+            ;;
+    esac
+done
 
-# 2. Apply content enhancement
-info "(2) Apply content enhancement"
-info "(2.1) AI Briefing"
-# TODO: Expand this when Python part finishes
-if true; then
-    success "Successfully apply AI briefing"
-else
-    error "Failed to brief some or all text"
-fi
-
-# 3. Build the site
-info "(3) Build this site"
-info "(3.1) Download latest Hugo binary"
-
-HUGO_COMMAND="hugo"
-BUILD_CACHE="build_cache"
+# Setup Hugo
+info "Setting up Hugo"
 
 # Check if Hugo is installed and has the correct version
 if command -v hugo > /dev/null && [[ "$(hugo version)" == *"${HUGO_VER}"* ]]; then
@@ -101,22 +96,55 @@ else
     if curl -sS -L -o "${BUILD_CACHE}/hugo.tar.gz" "${HUGO_URL}"; then
         tar -xf "${BUILD_CACHE}/hugo.tar.gz" -C "${BUILD_CACHE}" || error "Failed to extract Hugo binary"
         success "Successfully downloaded Hugo ${HUGO_VER}"
-        HUGO_COMMAND="../${BUILD_CACHE}/hugo"
+        HUGO_COMMAND="${BUILD_CACHE}/hugo"
+        chmod +x "${HUGO_COMMAND}" || error "Failed to make Hugo executable"
     else
         error "Failed to download compatible Hugo binary"
     fi
 fi
-
-# Build the site
-info "(3.2) Build it!"
 
 # Check if src directory exists
 if [ ! -d "src" ]; then
     error "No 'src' directory found"
 fi
 
-# Change directory to src and build
-cd "src" || error "Failed to change directory to 'src'"
-"${HUGO_COMMAND}" --destination ../public || error "Failed to build Hugo site"
-
-info "Build process completed successfully!"
+if [ "$PREVIEW_MODE" = true ]; then
+    info "Running in PREVIEW mode"
+    
+    # Create build_cache directory for the site content
+    mkdir -p "${BUILD_CACHE}/site"
+    
+    # Copy configuration files to build_cache
+    if [ -f "src/hugo.toml" ]; then
+        cp "src/hugo.toml" "${BUILD_CACHE}/site/" || error "Failed to copy hugo.toml"
+    elif [ -f "src/hugo.toml" ]; then
+        cp "src/hugo.toml" "${BUILD_CACHE}/site/" || error "Failed to copy config.toml"
+    elif [ -f "src/hugo.yaml" ]; then
+        cp "src/hugo.yaml" "${BUILD_CACHE}/site/" || error "Failed to copy config.yaml"
+    elif [ -f "src/hugo.json" ]; then
+        cp "src/hugo.json" "${BUILD_CACHE}/site/" || error "Failed to copy config.json"
+    else
+        warning "No Hugo configuration file found in src directory"
+    fi
+    
+    # Copy content to build_cache
+    for dir in content static layouts archetypes themes assets data i18n; do
+        if [ -d "src/$dir" ]; then
+            cp -r "src/$dir" "${BUILD_CACHE}/site/" || warning "Failed to copy $dir directory"
+        fi
+    done
+    
+    # Start the Hugo server
+    info "Starting Hugo server from build_cache/site directory"
+    cd "${BUILD_CACHE}/site" || error "Failed to change directory to ${BUILD_CACHE}/site"
+    
+    success "Preview server starting at http://localhost:1313/"
+    info "Press Ctrl+C to stop the server"
+    "${HUGO_COMMAND}" serve --buildDrafts --buildFuture || error "Failed to start Hugo server"
+else
+    # Build the site
+    info "Building site to 'public' directory"
+    cd "src" || error "Failed to change directory to 'src'"
+    "${HUGO_COMMAND}" --destination ../public || error "Failed to build Hugo site"
+    success "Build process completed successfully!"
+fi
