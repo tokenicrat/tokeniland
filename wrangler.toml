@@ -1,0 +1,8 @@
+name = "bug-barrel"
+compatibility_date = "2025-05-03"
+
+[assets]
+directory = "./public"
+binding = "PAGES"
+not_found_handling = "404-page"
+
