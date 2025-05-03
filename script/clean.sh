@@ -9,6 +9,6 @@ if [[ "$(basename \"$PWD\")" != "src" ]]; then
     cd "./src" || (printf "${COLOR_RED}ERROR${COLOR_NONE} \`src\` directory not found\n")
 fi
 
-rm -rf ".hugo_build.lock" "../public" && \
+rm -rf ".hugo_build.lock" "../public" "../build_cache" && \
   printf "${COLOR_GREEN}SUCCESS${COLOR_NONE} Spring cleaning finishes\n" ||\
   printf "${COLOR_RED}ERROR${COLOR_NONE} Something went wrong\n"

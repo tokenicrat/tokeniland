@@ -10,7 +10,7 @@ COLOR_BLUE="\e[34m"
 COLOR_NONE="\e[0m"
 
 # Hugo version to use
-HUGO_VER="v0.147.1"
+HUGO_VER="0.147.1"
 
 # Function to display colored messages
 print_message() {
@@ -95,13 +95,13 @@ else
     
     # Download and extract Hugo
     HUGO_FILENAME="hugo_${HUGO_VER}_linux-amd64.tar.gz"
-    HUGO_URL="https://github.com/gohugoio/hugo/releases/download/${HUGO_VER}/${HUGO_FILENAME}"
+    HUGO_URL="https://github.com/gohugoio/hugo/releases/download/v${HUGO_VER}/${HUGO_FILENAME}"
     
     info "Downloading Hugo ${HUGO_VER}..."
-    if curl -sS "${HUGO_URL}" -o "${BUILD_CACHE}/hugo.tar.gz"; then
+    if curl -sS -L -o "${BUILD_CACHE}/hugo.tar.gz" "${HUGO_URL}"; then
         tar -xf "${BUILD_CACHE}/hugo.tar.gz" -C "${BUILD_CACHE}" || error "Failed to extract Hugo binary"
         success "Successfully downloaded Hugo ${HUGO_VER}"
-        HUGO_COMMAND="${BUILD_CACHE}/hugo"
+        HUGO_COMMAND="../${BUILD_CACHE}/hugo"
     else
         error "Failed to download compatible Hugo binary"
     fi

@@ -188,3 +188,7 @@ hugo.linux
 
 .hugo_build.lock
 
+
+# Barrel Build files
+
+build_cache
