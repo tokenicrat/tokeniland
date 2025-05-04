@@ -12,7 +12,6 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-#      - name: 🤖 AI briefing new or modified articles
       - name: 🚧 Build the site with Barrel Build
         run: bash script/build.sh
       - name: 🚀 Deploy to Cloudflare Workers

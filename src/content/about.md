@@ -30,7 +30,7 @@ cover:
 - 📮 邮箱：[tokenicrat@tokenisite.top](mailto:tokenicrat@tokenisite.top)
 - 📧 私人邮箱：`openssl enc -base64 -d <<< "dG9rZW5pY3JhdEB0dXRhLmlvCg=="`
 - 🐙 GitHub：[Tokenicrat (tokenicrat)](https://github.com/tokenicrat)
-- ✈️ Telegram：[Tokenicrat](https://t.me/tokenicrat)
+- ✈️ Telegram：[Tokenicrat](https://t.me/tokenipm_bot)（机器人转发）
 - 🌈 Bluesky：[Tokenicrat (tokenicrat.bsky.social)](https://bsky.app/profile/tokenicrat.bsky.social)
 - 🐧 LINUX DO：[Tokenicrat (talentedbug)](https://linux.do/u/talentedbug)
 
