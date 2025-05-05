@@ -98,6 +98,7 @@ else
         success "Successfully downloaded Hugo ${HUGO_VER}"
         HUGO_COMMAND="${BUILD_CACHE}/hugo"
         chmod +x "${HUGO_COMMAND}" || error "Failed to make Hugo executable"
+	HUGO_COMMAND="../${HUGO_COMMAND}"
     else
         error "Failed to download compatible Hugo binary"
     fi
@@ -140,11 +141,11 @@ if [ "$PREVIEW_MODE" = true ]; then
     
     success "Preview server starting at http://localhost:1313/"
     info "Press Ctrl+C to stop the server"
-    "../${HUGO_COMMAND}" serve --buildDrafts --buildFuture || error "Failed to start Hugo server"
+    "${HUGO_COMMAND}" serve --buildDrafts --buildFuture || error "Failed to start Hugo server"
 else
     # Build the site
     info "Building site to 'public' directory"
     cd "src" || error "Failed to change directory to 'src'"
-    "../${HUGO_COMMAND}" --destination ../public || error "Failed to build Hugo site"
+    "${HUGO_COMMAND}" --destination ../public || error "Failed to build Hugo site"
     success "Build process completed successfully!"
 fi
