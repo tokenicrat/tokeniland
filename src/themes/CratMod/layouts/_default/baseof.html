@@ -17,6 +17,9 @@
 {{- print " dark" }}
 {{- end -}}
 " id="top">
+    {{- if .Param "toggleBlur" -}}
+    {{- partial "blur_page.html" . }}
+    {{- end -}}
     {{- partialCached "header.html" . .Page -}}
     <main class="main">
         {{- block "main" . }}{{ end }}
