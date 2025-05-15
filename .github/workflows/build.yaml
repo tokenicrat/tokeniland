@@ -1,4 +1,4 @@
-name: 🌥️ Deploy Barrel to Cloudflare Workers
+name: 🌥️ Deploy Tokeniland to Cloudflare Workers
 
 on:
   push:
