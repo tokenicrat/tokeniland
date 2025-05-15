@@ -1,5 +1,5 @@
 baseURL = "https://hi.tokenisite.top/"
-title = "桶装幺蛾子"
+title = "词元保护区"
 theme = "CratMod"
 copyright = "使用 CC0 协议，允许您自由使用"
 languageCode = "zh"
@@ -15,8 +15,8 @@ minifyOutput = true
 
 [params]
 env = "production"
-title = "桶装幺蛾子"
-fancyTitle = "🔏 桶装幺蛾子"
+title = "词元保护区"
+fancyTitle = "🔏 词元保护区"
 description = "418 I'm a teapot"
 author = "词元"
 DateFormat = "January 2, 2006"
@@ -46,7 +46,7 @@ safari_pinned_tab = "/favicon.ico"
 banner = "/banner.png"
 
 [params.homeInfoParams]
-Title = "桶装幺蛾子"
+Title = "词元保护区"
 Content = "418 I'm a teapot"
 
 [[params.socialIcons]]

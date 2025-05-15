@@ -23,7 +23,7 @@ cover:
 >   - Python、C++，运维和网安
 >   - 社恐，INTJ-A
 >
-> 【例】～是“桶装幺蛾子”的作者。
+> 【例】～是“词元保护区”的作者。
 
 ### ☎️ 抓！
 
@@ -34,7 +34,7 @@ cover:
 - 🌈 Bluesky：[Tokenicrat (tokenicrat.bsky.social)](https://bsky.app/profile/tokenicrat.bsky.social)
 - 🐧 LINUX DO：[Tokenicrat (talentedbug)](https://linux.do/u/talentedbug)
 
-## 🥫 桶装幺蛾子
+## 🔏 词元保护区
 
 **大事记**：
 
