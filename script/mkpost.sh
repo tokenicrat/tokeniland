@@ -11,5 +11,5 @@ fi
 
 (hugo new --kind post "content/posts/${FILE_NAME}.md" &&\
   mkdir "static/img/${FILE_NAME}.md") &&\
-  printf "${COLOR_GREEN}SUCCESS${COLOR_NONE} Article create\n" ||\
+  printf "${COLOR_GREEN}SUCCESS${COLOR_NONE} Article created\n" ||\
   printf "${COLOR_RED}ERROR${COLOR_NONE} Something went wrong\n"
