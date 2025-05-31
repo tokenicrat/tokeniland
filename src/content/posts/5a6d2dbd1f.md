@@ -12,7 +12,7 @@ cover:
   hidden: false
 ---
 
-三个月之前，词元发布了一则非常详细的 VLESS、WebSocket、TLS 加上 CDN 的代理搭建指南（[搭建自己的代理服务器](https://hi.bug-barrel.top/posts/4f6adc86c6/)），给出了词元当时认为最安全的方案。
+三个月之前，词元发布了一则非常详细的 VLESS、WebSocket、TLS 加上 CDN 的代理搭建指南（[搭建自己的代理服务器](/posts/4f6adc86c6/)），给出了词元当时认为最安全的方案。
 
 事实证明，这个方案确实很安全，元旦期间词元用的 Cloudflare Anycast IP 被封了，但词元的服务器 IP 依然坚挺，可以正常访问（改 `hosts` 可以继续使用 CDN）。而这个安全性，主要就来自于 CDN 的加持，这样可以最大限度地防止 IP 泄露，将自己的流量隐藏在 CDN 边缘服务器的巨量吞吐中，被封也就无从谈起了。
 
@@ -66,7 +66,7 @@ meek 的思想可以概括为“分包上行，流式下行”，而 XHTTP（原
 
 ## ⚙️ 搭建 XHTTP 代理
 
-本节参考不良林的[视频](https://www.youtube.com/watch?v=GB_SHmqotzQ)撰写，综合了词元的个人经验，也很建议您去看看原视频，有些东西词元在[上一篇文章](https://hi.bug-barrel.top/posts/4f6adc86c6/)里已经讲过了，就不仔细介绍。
+本节参考不良林的[视频](https://www.youtube.com/watch?v=GB_SHmqotzQ)撰写，综合了词元的个人经验，也很建议您去看看原视频，有些东西词元在[上一篇文章](/posts/4f6adc86c6/)里已经讲过了，就不仔细介绍。
 
 词元在自己研究的基础上，决定按照视频里的指导，选择这样的协议组合：VLESS、XHTTP、Reality，以及 CDN 保护，上下行流量分裂。
 
