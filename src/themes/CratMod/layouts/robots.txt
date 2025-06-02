@@ -1,7 +1,10 @@
-User-agent: *
-{{ range .Site.AllPages }}
-{{ if .Params.noindex }}
-Disallow: {{ .RelPermalink }}
-{{ end }}
-{{ end }}
-Sitemap: {{ "sitemap.xml" | absURL }}
+user-agent: *
+
+{{- range .Site.AllPages }}
+{{- if .Params.noindex }}
+disallow: {{ .RelPermalink }}
+{{- end }}
+{{- end }}
+
+sitemap: {{ "sitemap.xml" | absURL }}
+
