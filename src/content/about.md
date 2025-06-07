@@ -20,7 +20,7 @@ cover:
 >
 >   - 高中生，AFO'd OIer
 >   - Arch Linux 用户
->   - Python、C++，运维和网安
+>   - Python 开发者，网安入门
 >   - 社恐，INTJ-A
 >
 > 【例】～是“词元保护区”的作者。
