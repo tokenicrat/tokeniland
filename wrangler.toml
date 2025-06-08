@@ -1,0 +1,7 @@
+name = "tokeniland"
+compatibility_date = "2025-05-05"
+
+[assets]
+directory = "./public"
+not_found_handling = "404-page"
+
