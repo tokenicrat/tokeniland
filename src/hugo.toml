@@ -1,0 +1,92 @@
+baseURL = "https://hi.tokenisite.top/"
+title = "词元保护区"
+theme = "CratMod"
+copyright = "使用 CC0 协议，允许您自由使用"
+languageCode = "zh"
+enableRobotsTXT = true
+buildDrafts = false
+buildFuture = false
+buildExpired = false
+pygmentsUseClasses = true
+
+[minify]
+disableXML = true
+minifyOutput = true
+
+[params]
+env = "production"
+title = "词元保护区"
+fancyTitle = "🔏 词元保护区"
+description = "418 I'm a teapot"
+author = "词元"
+DateFormat = "January 2, 2006"
+defaultTheme = "auto"
+disableThemeToggle = true
+ShowReadingTime = true
+ShowPostNavLinks = true
+ShowBreadCrumbs = true
+ShowCodeCopyButtons = true
+ShowWordCount = true
+ShowRssButtonInSectionTermList = true
+UseHugoToc = true
+disableSpecial1stPost = true
+disableScrollToTop = false
+hidemeta = false
+hideSummary = false
+comments = true
+showtoc = true
+tocopen = false
+
+[params.assets]
+favicon = "/favicon.ico"
+favicon16x16 = "/favicon.ico"
+favicon32x32 = "/favicon.ico"
+apple_touch_icon = "/favicon.ico"
+safari_pinned_tab = "/favicon.ico"
+banner = "/banner.png"
+
+[params.homeInfoParams]
+Title = "词元保护区"
+Content = "418 I'm a teapot"
+
+[[params.socialIcons]]
+name = "github"
+url = "https://github.com/tokenicrat"
+
+[[params.socialIcons]]
+name = "email"
+url = "mailto:tokenicrat@tokenisite.top"
+
+[params.cover]
+hidden = false
+hiddenInList = false
+hiddenInSingle = false
+
+[[menu.main]]
+identifier = "home"
+name = "📚 档案"
+url = "/archives/"
+weight = 10
+
+[[menu.main]]
+identifier = "categories"
+name = "📂 分类"
+url = "/categories/"
+weight = 15
+
+[[menu.main]]
+identifier = "tags"
+name = "🏷️ 标签"
+url = "/tags/"
+weight = 20
+
+[[menu.main]]
+identifier = "about"
+name = "🧐 关于"
+url = "/about/"
+weight = 30
+
+[markup.highlight]
+noClasses = false
+guessSyntax = false
+lineNos = true

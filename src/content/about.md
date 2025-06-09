@@ -36,7 +36,7 @@ cover:
 
 ## 🔏 词元保护区
 
-词元的博客，欢迎访问 [GitHub 仓库](https://github.com/tokenicrat/tokenicrat.github.io)。
+词元之前专门写了一则博客介绍：[词元计数器构造简介](/posts/0e793b240a/)。
 
 **大事记**：
 
@@ -47,7 +47,6 @@ cover:
 - 💸 2025 年 2 月，更换域名，退出开往
 - 🎡 2025 年 2 月，第三版，更换主题为基于 PaperMod 开发的 CratMod
 - ⛑️ 2025 年 5 月，迁移至 Cloudflare Workers，整理了文章结构
-- 🐙 2025 年 6 月，迁移至 GitHub Pages，大道至简
 - 未完待续……
 
 ### 🗞️ 内容协议与 AI
