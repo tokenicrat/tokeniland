@@ -17,6 +17,27 @@
 {{- print " dark" }}
 {{- end -}}
 " id="top">
+<div id="banner" style="
+    background-color: rgb(65, 66, 68); /* Grey background */
+    color: white; /* White text */
+    padding: 15px; /* Some padding */
+    text-align: center; /* Centered text */
+    font-family: Arial, sans-serif; /* Font style */
+    font-size: 16px; /* Font size */
+    position: relative; /* For positioning the close button */
+    display: flex; /* Use flexbox for alignment */
+    justify-content: center; /* Center the message */
+    align-items: center; /* Vertically align items */
+">
+<p style="margin: 0;">🆕 词元正在整理并迁移至 <a href="https://tokenicrat.github.io">🔗 新博客</a>！</p>
+    <span style="
+        margin-left: auto; /* Pushes the close button to the right */
+        font-size: 20px; /* Larger font for the cross */
+        cursor: pointer; /* Hand icon on hover */
+        padding: 0 10px; /* Padding around the cross */
+        line-height: 1; /* Aligns the cross vertically */
+    " onclick="document.getElementById('banner').style.display='none';">&times;</span>
+</div>
     {{- if .Param "toggleBlur" -}}
     {{- partial "blur_page.html" . }}
     {{- end -}}
